@@ -133,3 +133,35 @@ That gives a useful tool quickly without overbuilding.
 3. Inspect the template zip and report documents.
 4. Build the first MCP tool set.
 5. Test one full section in Overleaf.
+
+## Recommended Setup Path For You
+Since you are new to MCP and already have useful servers in your VS Code profile, start with the simplest path:
+
+1. Use the existing MCP servers first.
+  - Playwright MCP for browser actions.
+  - Chrome DevTools MCP for debugging.
+  - GitHub MCP only if you need repo or task support.
+
+2. Do not build a custom MCP server yet.
+  - First check whether the existing tools can already handle your Overleaf workflow.
+  - A custom server only makes sense after you find a repeated gap.
+
+3. Prepare the Overleaf report workflow.
+  - Keep the college template zip in the workspace.
+  - Extract the template locally if needed.
+  - Collect images, figures, and reference files in one folder.
+
+4. Test one small report action.
+  - Open Overleaf.
+  - Upload one image.
+  - Edit one section of text.
+  - Confirm the LaTeX still compiles.
+
+5. Only then decide if a custom MCP server is needed.
+  - If the browser tools work, keep it simple.
+  - If you need repeated file parsing, text generation, or batch image handling, then build a custom server later.
+
+## What To Keep In Mind
+- Overleaf is usually better handled by browser automation than by trying to sync everything with a custom integration.
+- The safest workflow is: draft locally, push small edits into Overleaf, compile, then review.
+- For your project and internship reports, the real value is not full automation; it is reducing manual copy-paste and repeated formatting.

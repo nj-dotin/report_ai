@@ -1,0 +1,13 @@
+{
+  "servers": {
+    "latex-server": {
+      "command": "C:/Users/user/AppData/Local/Programs/Python/Python314/python.exe",
+      "args": [
+        "F:/report_ai/mcp-latex-server/latex_server.py"
+      ],
+      "env": {
+        "LATEX_SERVER_BASE_PATH": "${workspaceFolder}"
+      }
+    }
+  }
+}
