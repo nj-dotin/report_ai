@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Internship Report Generator — VIT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+<body>
+<div class="bg-blobs">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
+
+<div class="shell">
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-logo">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+    </div>
+    <div>
+      <h1 class="app-title">Internship Report Generator</h1>
+      <p class="app-sub">Vemana Institute of Technology — VTU Affiliated</p>
+    </div>
+  </header>
+
+  <!-- Step Progress -->
+  <div class="steps-bar">
+    <div class="step active" data-step="1"><span class="step-num">1</span><span class="step-label">Student</span></div>
+    <div class="step-line"></div>
+    <div class="step" data-step="2"><span class="step-num">2</span><span class="step-label">Internship</span></div>
+    <div class="step-line"></div>
+    <div class="step" data-step="3"><span class="step-num">3</span><span class="step-label">Upload Files</span></div>
+    <div class="step-line"></div>
+    <div class="step" data-step="4"><span class="step-num">4</span><span class="step-label">AI Content</span></div>
+    <div class="step-line"></div>
+    <div class="step" data-step="5"><span class="step-num">5</span><span class="step-label">Images</span></div>
+    <div class="step-line"></div>
+    <div class="step" data-step="6"><span class="step-num">6</span><span class="step-label">Generate</span></div>
+  </div>
+
+  <!-- ── STEP 1: Student Details ── -->
+  <div class="card active" id="step1">
+    <h2 class="card-title"><span class="badge">Step 1</span> Student Details</h2>
+    <div class="grid2">
+      <div class="field">
+        <label>Full Name</label>
+        <input type="text" id="name" placeholder="e.g. Kamal S" required/>
+      </div>
+      <div class="field">
+        <label>USN</label>
+        <input type="text" id="usn" placeholder="e.g. 1VI22EC066" required/>
+      </div>
+      <div class="field">
+        <label>Department</label>
+        <input type="text" id="department" placeholder="e.g. Electronics and Communication Engineering" required/>
+      </div>
+      <div class="field">
+        <label>Degree</label>
+        <input type="text" id="degree" value="Bachelor of Engineering"/>
+      </div>
+      <div class="field">
+        <label>Academic Year</label>
+        <input type="text" id="academic_year" value="2025-2026"/>
+      </div>
+      <div class="field">
+        <label>Internal Supervisor</label>
+        <input type="text" id="internal_supervisor" placeholder="e.g. Prof. Ankitha A" required/>
+      </div>
+      <div class="field">
+        <label>HOD Name</label>
+        <input type="text" id="hod" placeholder="e.g. Dr. Suneeta" required/>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="goStep(2)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 2: Internship Details ── -->
+  <div class="card" id="step2">
+    <h2 class="card-title"><span class="badge">Step 2</span> Internship Details</h2>
+    <div class="grid2">
+      <div class="field full">
+        <label>Internship Role / Title</label>
+        <input type="text" id="internship_title" placeholder="e.g. UX Design & Game Design Internship" required/>
+      </div>
+      <div class="field">
+        <label>Company Name</label>
+        <input type="text" id="company_name" placeholder="e.g. Edutainer" required/>
+      </div>
+      <div class="field">
+        <label>External Supervisor (from Company)</label>
+        <input type="text" id="external_supervisor" placeholder="e.g. Edutainer Team"/>
+      </div>
+      <div class="field">
+        <label>Start Date</label>
+        <input type="text" id="start_date" placeholder="e.g. 02.02.2026" required/>
+      </div>
+      <div class="field">
+        <label>End Date</label>
+        <input type="text" id="end_date" placeholder="e.g. 31.05.2026" required/>
+      </div>
+      <div class="field full">
+        <label>Company Summary <span class="hint">(paste 5,000–10,000 words about the company — about page, services, projects, etc.)</span></label>
+        <textarea id="company_summary" rows="8" placeholder="Paste detailed information about the company here. The more you provide, the better the AI-generated content will be. Include: what the company does, their products/services, tech stack, work culture, projects, etc."></textarea>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-outline" onclick="goStep(1)">← Back</button>
+      <button class="btn-primary" onclick="goStep(3)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 3: Upload Files ── -->
+  <div class="card" id="step3">
+    <h2 class="card-title"><span class="badge">Step 3</span> Upload Logos & Certificate</h2>
+    <p class="card-desc">All uploads are optional except the company certificate.</p>
+
+    <div class="upload-grid">
+      <div class="upload-box" id="upload_dept_logo">
+        <div class="upload-icon">🏛️</div>
+        <div class="upload-label">Department Logo</div>
+        <div class="upload-hint">Optional — PNG/JPG</div>
+        <input type="file" id="dept_logo_input" accept="image/*" class="file-hidden" onchange="handleUpload(this,'dept_logo','dept_logo')"/>
+        <button class="btn-sm" onclick="document.getElementById('dept_logo_input').click()">Choose File</button>
+        <div class="upload-status" id="dept_logo_status"></div>
+      </div>
+
+      <div class="upload-box" id="upload_company_logo">
+        <div class="upload-icon">🏢</div>
+        <div class="upload-label">Company Logo</div>
+        <div class="upload-hint">Optional — PNG/JPG</div>
+        <input type="file" id="company_logo_input" accept="image/*" class="file-hidden" onchange="handleUpload(this,'company_logo','company_logo')"/>
+        <button class="btn-sm" onclick="document.getElementById('company_logo_input').click()">Choose File</button>
+        <div class="upload-status" id="company_logo_status"></div>
+      </div>
+
+      <div class="upload-box" id="upload_cert">
+        <div class="upload-icon">📜</div>
+        <div class="upload-label">Company Certificate</div>
+        <div class="upload-hint">Full page scan — PNG/JPG/PDF</div>
+        <input type="file" id="cert_input" accept="image/*,.pdf" class="file-hidden" onchange="handleUpload(this,'cert_image','cert')"/>
+        <button class="btn-sm" onclick="document.getElementById('cert_input').click()">Choose File</button>
+        <div class="upload-status" id="cert_status"></div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-outline" onclick="goStep(2)">← Back</button>
+      <button class="btn-primary" onclick="generateAndShowPrompt()">Next → Generate AI Prompt</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 4: AI Prompt ── -->
+  <div class="card" id="step4">
+    <h2 class="card-title"><span class="badge">Step 4</span> Get AI Content</h2>
+
+    <div class="prompt-instructions">
+      <div class="instr-step">
+        <div class="instr-num">1</div>
+        <div>Copy the prompt below and paste it into <strong>ChatGPT</strong>, <strong>Claude</strong>, or any AI assistant.</div>
+      </div>
+      <div class="instr-step">
+        <div class="instr-num">2</div>
+        <div>The AI will generate all 5 chapters of your report.</div>
+      </div>
+      <div class="instr-step">
+        <div class="instr-num">3</div>
+        <div>Copy the entire AI response and paste it in the box below.</div>
+      </div>
+    </div>
+
+    <div class="prompt-box-wrap">
+      <div class="prompt-box-header">
+        <span>📋 Your AI Prompt</span>
+        <button class="btn-copy" id="copyPromptBtn" onclick="copyPrompt()">Copy Prompt</button>
+      </div>
+      <textarea id="ai_prompt_display" class="prompt-display" readonly rows="14"></textarea>
+    </div>
+
+    <div class="field" style="margin-top:1.5rem">
+      <label>📥 Paste AI Response Here</label>
+      <textarea id="ai_content" rows="14" placeholder="Paste the full AI-generated response here. Make sure it contains all the ===SECTION=== markers."></textarea>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-outline" onclick="goStep(3)">← Back</button>
+      <button class="btn-primary" onclick="goStep(5)">Next → Add Images</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 5: Chapter Images ── -->
+  <div class="card" id="step5">
+    <h2 class="card-title"><span class="badge">Step 5</span> Upload Chapter Images <span class="hint">(Optional)</span></h2>
+    <p class="card-desc">Upload images/figures for each chapter. Add a caption for each image. Max 6 per chapter.</p>
+
+    <div id="chapter-image-sections">
+      <!-- Generated by JS -->
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-outline" onclick="goStep(4)">← Back</button>
+      <button class="btn-primary" onclick="goStep(6)">Next → Generate Report</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 6: Generate ── -->
+  <div class="card" id="step6">
+    <h2 class="card-title"><span class="badge">Step 6</span> Generate Report</h2>
+
+    <div id="review-summary" class="review-box"></div>
+
+    <div id="gen-idle">
+      <p class="card-desc" style="margin-top:1rem">Everything looks good! Click below to generate your LaTeX report and PDF.</p>
+      <div class="btn-row">
+        <button class="btn-outline" onclick="goStep(5)">← Back</button>
+        <button class="btn-generate" id="generateBtn" onclick="generateReport()">
+          <span>⚡ Generate Report</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="gen-loading" class="hidden">
+      <div class="loading-wrap">
+        <div class="spinner"></div>
+        <p>Compiling LaTeX report...</p>
+        <p class="hint">This may take 20–30 seconds</p>
+      </div>
+    </div>
+
+    <div id="gen-done" class="hidden">
+      <div class="success-wrap">
+        <div class="success-icon">✅</div>
+        <h3>Report Generated!</h3>
+        <div class="download-row">
+          <a id="dl-tex" href="#" class="dl-btn tex-btn">📄 Download .TEX</a>
+          <a id="dl-pdf" href="#" class="dl-btn pdf-btn hidden">📕 Download PDF</a>
+        </div>
+        <p id="no-pdf-msg" class="hint hidden">PDF compilation failed. Download the .tex file and compile with MiKTeX / Overleaf.</p>
+        <button class="btn-outline" style="margin-top:1rem" onclick="resetAll()">Generate Another Report</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- .shell -->
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
