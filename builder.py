@@ -396,7 +396,7 @@ I also acknowledge the support of \textbf{{{comp_e}}} for providing structured l
   \fancyfoot[L]{{\small Dept. of {dept_short_e}, Vemana IT}}
   \fancyfoot[C]{{\small {year_e}}}
   \fancyfoot[R]{{\small Page \thepage\ of \pageref{{LastPage}}}}
-  \renewcommand{{\chaptermark}}[1]{{\markboth{{#1}}{{}}}}
+  \renewcommand{{\chaptermark}}[1]{{\markboth{{##1}}{{}}}}
 }}
 
 % Plain style for front-matter (used by \chapter*, \listoffigures, etc.)
@@ -589,7 +589,7 @@ It is certified that all corrections and suggestions indicated for internal asse
   \fancyfoot[L]{{\small Dept. of {dept_short_e}, Vemana IT}}
   \fancyfoot[C]{{\small {year_e}}}
   \fancyfoot[R]{{\small Page \thepage\ of \pageref{{LastPage}}}}
-  \renewcommand{{\chaptermark}}[1]{{\markboth{{#1}}{{}}}}
+  \renewcommand{{\chaptermark}}[1]{{\markboth{{##1}}{{}}}}
 }}
 \pagestyle{{mainchapter}}
 
