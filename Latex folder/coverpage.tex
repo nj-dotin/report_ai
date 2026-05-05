@@ -1,0 +1,92 @@
+\documentclass[12pt,a4paper,twocolumn,fleqn]{article}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage[a4paper,top=10mm, bottom=25mm, left=10mm, right=20mm]{geometry}
+%\usepackage[a4paper,top=1.905cm, bottom=1.905cm, left=3.175cm, right=2.54cm]{geometry}
+%\marginsize{3.175cm}{2.54cm}{1.905cm}{1.905cm} 
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage[]{algorithm2e}
+\usepackage{color}
+\usepackage{fancybox}   % <-- IMPORTANT
+\usepackage{lineno}
+\usepackage{xtab,booktabs}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage[compact]{titlesec}
+\usepackage{float}
+\usepackage{eso-pic}
+% ----- REMOVE PAGE NUMBERS -----
+\pagestyle{empty}
+
+% ----- ZERO SPACING FOR EQUATIONS -----
+\makeatletter
+\g@addto@macro{\normalsize}{%
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}}
+\makeatother
+
+\mathindent=0pt
+
+% ----- TITLE SPACING -----
+\titlespacing{\section}{0pt}{*0}{*0}
+\titlespacing{\subsection}{0pt}{*0}{*0}
+\titlespacing{\subsubsection}{0pt}{*0}{*0}
+
+% ----- FANCY DOUBLE BORDER FOR ALL PAGES -----
+\makeatletter
+\def\ps@myfancypage{%
+  \let\@mkboth\@gobbletwo
+  \def\@oddhead{}%
+  \def\@evenhead{}%
+  \def\@oddfoot{}%
+  \def\@evenfoot{}%
+  \fancypage{%
+      \setlength{\fboxsep}{20pt}\doublebox
+  }{}%
+}
+\makeatother
+
+\pagestyle{myfancypage}   % <-- Activate global fancy border
+\usepackage{graphicx}
+\usepackage[pages=some]{background}
+\backgroundsetup{scale=1,angle=0,opacity=0.1,contents={\includegraphics[scale=0.5]{logo (1).jpg}}}
+\usepackage{blindtext}
+
+\begin{document}
+\onecolumn
+\begin{center}
+\textbf{\Large{VISVESVARAYA TECHNOLOGICAL UNIVERSITY}} \\[2mm]
+\textbf{\large Jnana Sangama, Belagavi-590018}\\[0.5cm]
+
+\includegraphics[scale=20]{VTULOGO.png} \\[0.4cm]
+\small{\textit{AN INTERSHIP REPORT ON}} \\[0.5cm]
+\normalsize\textbf{\Large{Industry Entry Level - AI powered Industrial} \\ [2mm] {Power Electronics \& Embedded System design}} \\[0.8cm]
+
+\normalsize{\textit{Submitted in partial fulfillment for the award of the degree of}}\\[5mm]
+\normalsize{\textbf{\large{Bachelor of Engineering}}} \\[3mm]
+\normalsize{\textbf{in}} \\[3mm]
+\normalsize{\textbf{\large{Department of Electronics and Communication Engineering}}}\\[0.5cm]
+\small{Submitted by} \\[5mm]
+
+\normalsize\textbf{\Large Kavyashree K \hspace{15mm} \textbf 1VI22EC070}\\[2mm]
+
+
+\includegraphics[scale=0.2]{logo (1).jpg} \\[0.4cm]
+
+{\normalsize\textbf{DEPARTMENT OF ELECTRONICS \& COMMUNICATION ENGINEERING}}\\[3mm]
+{\large\textbf{VEMANA INSTITUTE OF TECHNOLOGY}}\\[3mm]
+{\large (Affiliated to VTU \& Approved by AICTE)}\\[3mm]
+
+{\large \#1, Mahayogi Vemana Road, Koramangala, Bengaluru–560034}\\[0.7cm]
+
+{\large \textbf{2025-2026}}\\[2cm]
+
+\end{center}
+\end{document}

@@ -334,7 +334,7 @@ I also acknowledge the support of \textbf{{{comp_e}}} for providing structured l
 % -- Chapter heading format -------------------------------------------------
 \titleformat{{\chapter}}[display]
   {{\filcenter\bfseries\Large}}
-  {{\chaptername~\thechapter}}{{10pt}}{{\LARGE\markboth{{\MakeUppercase{{#1}}}}{{\MakeUppercase{{#1}}}}}}
+  {{\chaptername~\thechapter}}{{10pt}}{{\LARGE}}
 
 % Ensure chapter marks are set for headers
 \renewcommand{{\chaptermark}}[1]{{\markboth{{#1}}{{#1}}}}

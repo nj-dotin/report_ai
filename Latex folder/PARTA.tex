@@ -1,0 +1,323 @@
+\documentclass[12pt,a4paper,twocolumn,fleqn]{article}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+%\usepackage[a4paper,top=10mm, bottom=25mm, left=10mm, right=20mm]{geometry}
+\usepackage[a4paper,top=1.905cm, bottom=35mm, left=3.175cm, right=2.54cm]{geometry}
+%\marginsize{3.175cm}{2.54cm}{1.905cm}{1.905cm} 
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage[]{algorithm2e}
+\usepackage{color}
+\usepackage{fancybox}   % <-- IMPORTANT
+\usepackage{lineno}
+\usepackage{xtab,booktabs}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage[compact]{titlesec}
+\usepackage{float}
+\usepackage{eso-pic}
+% ----- REMOVE PAGE NUMBERS -----
+\pagestyle{empty}
+
+% ----- ZERO SPACING FOR EQUATIONS -----
+\makeatletter
+\g@addto@macro{\normalsize}{%
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}}
+\makeatother
+
+\mathindent=0pt
+
+% ----- TITLE SPACING -----
+\titlespacing{\section}{0pt}{*0}{*0}
+\titlespacing{\subsection}{0pt}{*0}{*0}
+\titlespacing{\subsubsection}{0pt}{*0}{*0}
+
+% ----- FANCY DOUBLE BORDER FOR ALL PAGES -----
+\makeatletter
+\def\ps@myfancypage{%
+  \let\@mkboth\@gobbletwo
+  \def\@oddhead{}%
+  \def\@evenhead{}%
+  \def\@oddfoot{}%
+  \def\@evenfoot{}%
+  \fancypage{%
+      \setlength{\fboxsep}{20pt}\doublebox
+  }{}%
+}
+\makeatother
+
+\pagestyle{myfancypage}   % <-- Activate global fancy border
+\usepackage{graphicx}
+\usepackage[pages=some]{background}
+\backgroundsetup{scale=1,angle=0,opacity=0.1,contents={\includegraphics[scale=0.45]{logo (1).jpg}}}
+\usepackage{blindtext}
+\usepackage{setspace}
+\begin{document}
+\onecolumn 
+\begin{center}
+
+\textbf{\large{VISVESVARAYA TECHNOLOGICAL UNIVERSITY}} \\[2mm]
+\textbf{\large Jnana Sangama, Belagavi-590018}\\[0.5cm]
+
+\includegraphics[scale=19]{VTULOGO.png} \\[0.4cm]
+\small{\textit{AN INTERNSHIP REPORT ON}} \\[0.4cm]
+\normalsize\textbf{\large{Industry Entry Level - AI powered Industrial} \\ [2mm] {Power Electronics \& Embedded System design}} \\[0.6cm]
+
+\small{\textit{Submitted in partial fulfillment for the award of the degree of}}\\[3mm]
+\normalsize{\textbf{\large{Bachelor of Engineering}}} \\[3mm]
+\normalsize{\textbf{in}} \\[3mm]
+\normalsize{\textbf{\large{Department of Electronics and Communication Engineering}}} \\[0.5cm]
+\small{Submitted by} \\[5mm]
+
+\normalsize\textbf{\large Kavyashree K \hspace{15mm} \textbf 1VI22EC070}\\[2mm]
+
+
+\includegraphics[scale=0.2]{logo (1).jpg} \\[0.4cm]
+
+
+{\normalsize\textbf{DEPARTMENT OF ELECTRONICS \& COMMUNICATION ENGINEERING}}\\[3mm]
+{\large\textbf{VEMANA INSTITUTE OF TECHNOLOGY}}\\[3mm]
+{\large (Affiliated to VTU \& Approved by AICTE)}\\[2mm]
+
+{\large \#1, Mahayogi Vemana Road, Koramangala, Bengaluru–560034}\\[0.4cm]
+
+{\large \textbf{2025-2026}}\\[2cm]
+
+\end{center}
+
+\newpage
+\BgThispage
+\begin{center}
+
+{\Large \textbf{Karnataka Reddy Jana Sangha\textsuperscript{\small{\textcolor{red}\textregistered}}}}\\[5mm]
+
+{\Large \textbf{VEMANA INSTITUTE OF TECHNOLOGY}}\\[3mm]
+{\large (Affiliated to Visvesvaraya Technological University, Belagavi)}\\[2mm]
+{\large Koramangala, Bengaluru–560034}\\[0.8cm]
+\includegraphics[scale=50]{deptlogo.png}\\[0.4cm]
+{\large \textbf{DEPARTMENT OF}}\\[3mm]
+{\large \textbf{ELECTRONICS AND COMMUNICATION ENGINEERING}}\\[0.5cm]
+
+{\Large \textbf{CERTIFICATE}}\\[0.7cm]
+\end{center}
+
+\noindent
+This is to certify that the intership report entitled \textbf{“Title of the project in capital letters”} is a bonafide work carried out by  
+\textbf{Kavyashree K (1VI22EC070)},
+who have successfully carried out the internship work and submitted the report for partial fulfilment of the requirements for the award of the degree of 
+\textbf{Bachelor of Engineering} in  
+\textbf{Electronics and Communication Engineering},  
+Visvesvaraya Technological University (VTU), Belagavi, during the academic year 2026–2027. \\[0.1cm] 
+\newline
+\begin{center}
+\renewcommand{\arraystretch}{1.5} % overall row spacing
+
+\begin{tabular}{p{7cm} p{7cm}}
+
+\hspace{1.8cm}\textbf{External Guide} & \hspace{1.8cm}\textbf{Internal Guide} \\
+\hspace{1.8cm}(Mr.\ Sudhakara S) & \hspace{1.8cm}(Prof.\ Suma B V) \\[1cm]
+
+\hspace{1.3cm}\textbf{Head of the Department} & \hspace{2.2cm}\textbf{Principal} \\
+\hspace{2.6cm}(Dr.\ Suneeta) & \hspace{0.8cm}(Dr.\ Vijayasimha Reddy B.G) \\
+
+\end{tabular}
+\end{center}
+\begin{tabular}{p{8.7cm} p{7cm}}\\[7mm]
+\textbf{Name of the Examiners} & \hspace{0.5cm}\textbf{Signature with date}
+\\[6mm]
+\hspace{-0.7cm}1.\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\[10mm]
+\hspace{-0.7cm}2.\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\[6mm]
+\end{tabular}
+
+\newpage
+\BgThispage
+\begin{center}
+
+{\Large \textbf{Karnataka Reddy Jana Sangha\textsuperscript{\small{\textcolor{red}\textregistered}}}}\\[5mm]
+
+{\Large \textbf{VEMANA INSTITUTE OF TECHNOLOGY}}\\[3mm]
+{\large (Affiliated to Visvesvaraya Technological University, Belagavi)}\\[2mm]
+{\large Koramangala, Bengaluru–560034}\\[0.8cm]
+\includegraphics[scale=50]{deptlogo.png}\\[0.4cm]
+{\large \textbf{DEPARTMENT OF}}\\[0.5mm]
+{\large \textbf{ELECTRONICS \& COMMUNICATION ENGINEERING}}\\[0.5cm]
+
+{\Large \textbf{CERTIFICATE}}\\[0.7cm]
+\end{center}
+
+\noindent
+This is to certify that the internship report entitled \textbf{“Industry Entry Level - AI powered Industrial
+Power Electronics \& Embedded System design”} is a bonafide work carried out by  
+\textbf{KAVYASHREE K (1VI22EC070)},
+who have successfully carried out the internship work and submitted the report for partial fulfilment of the requirements for the award of the degree of 
+\textbf{Bachelor of Engineering} in  
+\textbf{Electronics and Communication Engineering},  
+Visvesvaraya Technological University (VTU), Belagavi, during the academic year 2025–2026. \\[0.1cm] 
+\newline
+\begin{center}
+\renewcommand{\arraystretch}{1.5} % overall row spacing
+
+\begin{tabular}{p{7cm} p{7cm}}
+
+\hspace{1.8cm}\textbf{External Guide} & \hspace{1.8cm}\textbf{Internal Guide} \\
+\hspace{1.8cm}(Ms.\ Shalini A R) & \hspace{1.8cm}(Prof.\ Suma B V) \\[1cm]
+
+\hspace{1.3cm}\textbf{Head of the Department} & \hspace{2.2cm}\textbf{Principal} \\
+\hspace{2.6cm}(Dr.\ Suneeta) & \hspace{0.8cm}(Dr.\ Vijayasimha Reddy B.G) \\
+
+
+\end{tabular}
+\end{center}
+\begin{tabular}{p{8.7cm} p{7cm}}\\[7mm]
+\textbf{Name of the Examiners} & \hspace{0.5cm}\textbf{Signature with date}
+\\[6mm]
+
+\hspace{-0.7cm}1.\rule{5cm}{0.4pt} & \rule{5cm}{0.4pt} \\[10mm]
+
+\hspace{-0.7cm}2.\rule{5cm}{0.4pt} & \rule{5cm}{0.4pt} \\[6mm]
+
+\end{tabular}
+
+
+
+
+
+\newpage
+\pagenumbering{roman}
+\setcounter{page}{1}
+\pagestyle{plain}
+
+\begin{center}
+{\Large \textbf{CERTIFICATE}}\\[1cm]
+\end{center}
+
+\vspace{2cm}
+
+\begin{center}
+% Add certificate image later here
+
+\vspace{10cm}
+
+\textit{(Certificate will be inserted here)}
+\end{center}
+
+\vfill
+\newpage
+\begin{center}
+{\Large \textbf{ACKNOWLEDGEMENT}}\\[1cm]
+\end{center}
+
+\noindent
+I sincerely thank \textbf{Visvesvaraya Technological University (VTU)} for providing me with the opportunity to undertake this internship as a part of the academic curriculum, which has contributed significantly to my learning and overall development. \\[5mm]
+\noindent
+I express my sincere gratitude to \textbf{Dr.\ Vijayasimha Reddy B G}, Principal, \textbf{Vemana Institute of Technology, Bengaluru}, for providing the necessary infrastructure, encouragement, and support to successfully carry out the internship work. \\[5mm]
+\noindent
+I extend my heartfelt thanks to \textbf{Dr.\ Suneeta, Head of the Department, Electronics and Communication Engineering}, Vemana Institute of Technology, for her constant guidance, motivation, and encouragement throughout the internship duration. \\[5mm]
+\noindent
+I would also like to thank my Internal Supervisor \textbf{Prof.\ Suma B V}, External Supervisor \textbf{Ms Shalini A R}, and Internship Coordinators \textbf{Dr.\ Girish N} and \textbf{Prof.\ Rashmi P B} for their cooperation, coordination, and valuable support during the internship period. \\[5mm]
+\noindent
+I am thankful to all the teaching and non-teaching staff members of the Department of Electronics and Communication Engineering for their support and encouragement throughout the internship. \\[5mm]
+\noindent
+I also acknowledge the support of the \textbf{SMPS Electric Control Pct. Ltd. | SMPS Tech Lab} for providing structured internship program and an environment that encouraged systematic understanding, practical application, and continuous improvement. \\[5mm]
+\noindent
+Last but not least, I express my sincere gratitude to my family and friends for their constant encouragement and support throughout the internship journey.
+\vfill
+
+\begin{flushright}
+\textbf{KAVYASHREE K} \\
+\textbf{1VI22EC070}
+\end{flushright}
+\newpage
+\begin{center}
+{\Large \textbf{ABSTRACT}}\\[1cm]
+\end{center}
+\onehalfspacing
+\noindent
+The Industry Fitness DeepTech Internship Program 2026, conducted by SMPS Electric Control Pvt. Ltd.under the SMPS Tech Lab division, was designed to bridge the gap between academic learning and real-world industrial application. The program aimed to develop industry-ready engineers through technical training, practical exposure, and innovation-driven activities. It followed a structured model combining Research \& Development (R\&D) and Entrepreneurship, helping interns understand both engineering solutions and product development.\\[5mm]
+\noindent
+During the internship, training sessions were conducted on electronics fundamentals, digital electronics, microcontrollers, embedded systems, RISC and CISC architecture, ARM basics, and industrial engineering practices. These sessions strengthened core concepts and improved practical readiness. As part of the final evaluation, special focus was given to 8051 Microcontroller \& Embedded Systems, covering theory, programming, hardware interfacing, simulation, and implementation.  \\[5mm]
+\noindent
+The internship also included an entrepreneurship activity where a prototype platform titled Scan2Crack – ECE Edition was conceptualized for engineering interview preparation. This provided exposure to idea validation, product planning, user-focused design, and software development using Python and Streamlit. \\[5mm] 
+\noindent
+In the R\&D phase, I worked in a team on the project titled Forward Engineering \& Development of AC-DC SMPS Power Supply. The work involved studying SMPS architecture, analyzing a reference system, understanding stages such as rectification, switching, transformer isolation, output filtering, and feedback regulation. Additional activities included schematic recreation, footprint assignment, component analysis, and basic learning of PCB design workflow using professional tools. \\[5mm] 
+\noindent
+Overall, the internship was a valuable platform for improving technical knowledge, practical skills, teamwork, communication, and professional confidence. It prepared me for future opportunities in embedded systems, electronics design, research, and core engineering industries.
+
+\newpage
+\begin{center}
+{\Large \textbf{TABLE OF CONTENTS}}\\[0.8cm]
+\end{center}
+
+\begin{tabular}{p{1.8cm}p{10cm}p{2cm}}
+
+\textbf{Chapter} & \textbf{Title} & \textbf{Page No}\\ 
+
+ & Certificate & i \\ 
+ & Acknowledgement & ii \\ 
+ & Abstract & iii \\ 
+ & Table of Contents & iv \\ 
+ & List of Figures & v \\[0.6cm]
+ 
+1 & INTRODUCTION & 1 \\ 
+ & 1.1 Importance of Industrial Internship & 1 \\[0.6cm]  
+
+2 & ORGANISATION PROFILE & 2--3 \\ 
+ & 2.1 About SMPS Electric Control Pvt. Ltd. & 2 \\ 
+ & 2.2 About SMPS Tech Lab & 2 \\ 
+ & 2.3 Vision and Mission & 3  \\ 
+ & 2.4 Domains and Services Offered & 3\\ [0.6cm]
+3 & OBJECTIVES OF INTERNSHIP & 4-5 \\ 
+ & 3.1 Technical Objectives &  4\\ 
+ & 3.2 Professional Objectives & 4 \\ 
+ & 3.3 Internship Learning Model &  5\\ [0.6cm]
+
+4 & WORK DONE / LEARNING EXPERIENCE & 6--12 \\ 
+ & 4.1 Technical and Entrepreneurship Training Sessions & 6 \\ 
+ & 4.2 Entrepreneurship Project -- Scan2Crack &  8\\ 
+ & 4.3 R\&D Project -- AC-DC SMPS Power Supply & 9 \\ 
+ & 4.4 Tools and Technologies Used &  10\\ 
+ & 4.5 Reviews,Challenges Faced and Team Participation &  11\\ [0.6cm]
+
+5 & LEARNING OUTCOMES & 13 \\ 
+ & 5.1 Technical Skills Gained &  13\\ 
+ & 5.2 Professional Skills Developed & 13 \\ 
+ & 5.3 Industry Exposure &  13\\ [0.6cm]
+
+6 & CONCLUSION & 14 \\ [0.6cm]
+
+7 & REFERENCES  & 15 \\[0.6cm] 
+
+
+\end{tabular}
+
+
+\newpage
+\begin{center}
+{\Large \textbf{LIST OF FIGURES}}\\[1cm]
+\end{center}
+\begin{center}
+\begin{tabular}{p{3cm}p{8cm}p{5cm}}
+\textbf{FIGURE NO}&\textbf{FIGURE CAPTION} & \textbf{PAGE NO.} \\
+\\
+     1& SMPS Electric Control Pvt. Ltd.& 2\\
+2&SMPS Tech Lab Logo &    3\\
+3&Internship Flow - Learning Model & 5 \\
+4&Technical Training Sessions & 6 \\
+5& Entrepreneurship Workshop & 7 \\
+6&Prototype Developed for Scan2Crack  & 8 \\
+7& AC-DC SMPS Block Diagram & 9 \\
+8&Reference and Altium Designer & 9 \\
+9&Entrepreneurship project Presentation & 11\\
+10&R\&D Review Meeting Presentation & 12 \\
+\end{tabular}
+ \end{center}
+
+\end{document}
