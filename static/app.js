@@ -137,6 +137,31 @@ function copyPrompt() {
   setTimeout(() => btn.textContent = "Copy Prompt", 2500);
 }
 
+async function autoGenerateContent() {
+  const formData = collectFormData();
+  const box = document.getElementById("ai_content");
+  const btn = document.getElementById("autoGenBtn");
+  
+  box.value = "Generating high-quality academic content locally... This might take a second...";
+  btn.textContent = "Generating...";
+  btn.disabled = true;
+
+  try {
+    const res = await fetch("/api/auto-generate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+    const data = await res.json();
+    box.value = data.ai_content || "Error generating content.";
+    btn.textContent = "✨ Content Generated!";
+  } catch (e) {
+    box.value = "Error: Could not generate content.";
+    btn.textContent = "✨ Auto-Generate Report Content";
+  }
+  btn.disabled = false;
+}
+
 // ── Chapter Image Sections ─────────────────────────────────────────────────
 function buildChapterImageSections() {
   const container = document.getElementById("chapter-image-sections");
@@ -238,7 +263,7 @@ function buildReviewSummary() {
 async function generateReport() {
   const aiContent = val("ai_content");
   if (!aiContent || aiContent.length < 50) {
-    alert("Please paste the AI-generated content in Step 4 before generating.");
+    alert("Please paste or auto-generate the content in Step 4 before generating.");
     return;
   }
 

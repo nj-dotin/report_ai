@@ -79,6 +79,14 @@ def api_generate_prompt():
     prompt = generate_prompt(data)
     return jsonify({"prompt": prompt})
 
+from content_engine import generate_academic_content
+
+@app.route("/api/auto-generate", methods=["POST"])
+def api_auto_generate():
+    data = request.get_json(force=True)
+    auto_text = generate_academic_content(data)
+    return jsonify({"ai_content": auto_text})
+
 @app.route("/api/upload", methods=["POST"])
 def api_upload():
     session_id = request.form.get("session_id") or str(uuid.uuid4())

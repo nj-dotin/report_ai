@@ -184,7 +184,10 @@
     </div>
 
     <div class="field" style="margin-top:1.5rem">
-      <label>📥 Paste AI Response Here</label>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+        <label style="margin: 0;">📥 Paste AI Response Here</label>
+        <button class="btn-primary" id="autoGenBtn" onclick="autoGenerateContent()" style="padding: 0.4rem 1rem; font-size: 0.9rem;">✨ Auto-Generate Report Content</button>
+      </div>
       <textarea id="ai_content" rows="14" placeholder="Paste the full AI-generated response here. Make sure it contains all the ===SECTION=== markers."></textarea>
     </div>
 

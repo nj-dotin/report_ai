@@ -34,7 +34,7 @@
 % -- Chapter heading format -------------------------------------------------
 \titleformat{\chapter}[display]
   {\filcenter\bfseries\Large}
-  {\chaptername~\thechapter}{10pt}{\LARGE\markboth{\MakeUppercase{#1}}{\MakeUppercase{#1}}}
+  {\chaptername~\thechapter}{10pt}{\LARGE}
 
 % Ensure chapter marks are set for headers
 \renewcommand{\chaptermark}[1]{\markboth{#1}{#1}}
@@ -96,7 +96,7 @@
   \fancyfoot[L]{\small Dept. of ECE, Vemana IT}
   \fancyfoot[C]{\small 2025-2026}
   \fancyfoot[R]{\small Page \thepage\ of \pageref{LastPage}}
-  \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+  \renewcommand{\chaptermark}[1]{\markboth{##1}{}}
 }
 
 % Plain style for front-matter (used by \chapter*, \listoffigures, etc.)
@@ -327,7 +327,7 @@ Strong line: 👉 “This internship transformed my understanding of DSP from th
   \fancyfoot[L]{\small Dept. of ECE, Vemana IT}
   \fancyfoot[C]{\small 2025-2026}
   \fancyfoot[R]{\small Page \thepage\ of \pageref{LastPage}}
-  \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+  \renewcommand{\chaptermark}[1]{\markboth{##1}{}}
 }
 \pagestyle{mainchapter}
 
