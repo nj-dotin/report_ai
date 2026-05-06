@@ -299,6 +299,7 @@ I also acknowledge the support of \textbf{{{comp_e}}} for providing structured l
     # FULL LATEX DOCUMENT
     # =======================================================================
     tex = rf"""\documentclass[12pt,a4paper]{{report}}
+\usepackage{{indentfirst}}
 
 \usepackage[margin=1in]{{geometry}}
 \usepackage{{graphicx}}
@@ -327,14 +328,19 @@ I also acknowledge the support of \textbf{{{comp_e}}} for providing structured l
 }}
 
 % -- Spacing ----------------------------------------------------------------
-\setstretch{{1.5}}
-\setlength{{\parindent}}{{1.5em}}
+\setstretch{{1.15}}
+%\setlength{{\parindent}}{{1.5em}}
 \setlength{{\parskip}}{{0.4em}}
 
 % -- Chapter heading format -------------------------------------------------
 \titleformat{{\chapter}}[display]
   {{\filcenter\bfseries\Large}}
   {{\chaptername~\thechapter}}{{10pt}}{{\LARGE}}
+
+\titlespacing*{{\chapter}}
+{{0pt}}
+{{-10pt}}
+{{35pt}}
 
 % Ensure chapter marks are set for headers
 \renewcommand{{\chaptermark}}[1]{{\markboth{{#1}}{{#1}}}}
@@ -409,7 +415,7 @@ I also acknowledge the support of \textbf{{{comp_e}}} for providing structured l
 }}
 
 \begin{{document}}
-
+\setlength{{\parindent}}{{0pt}}
 % ==========================================================================
 % TITLE PAGE  (single-spaced, zero parskip so it fits on one page)
 % ==========================================================================
@@ -417,7 +423,7 @@ I also acknowledge the support of \textbf{{{comp_e}}} for providing structured l
 \thispagestyle{{empty}}
 \begin{{singlespacing}}
 \setlength{{\parskip}}{{0pt}}
-\setlength{{\parindent}}{{0pt}}
+%\setlength{{\parindent}}{{0pt}}
 \centering
 \vspace*{{-0.5cm}}
 
@@ -441,7 +447,7 @@ I also acknowledge the support of \textbf{{{comp_e}}} for providing structured l
 \vspace{{2pt}}
 {{\large \textbf{{in}}\par}}
 \vspace{{2pt}}
-{{\large \textbf{{\textcolor{{blue}}{{{dept_e}}}}}\par}}
+{{\large \textbf{{\textcolor{{black}}{{{dept_e}}}}}\par}}
 \vspace{{8pt}}
 Submitted by\par
 \vspace{{4pt}}
@@ -467,59 +473,95 @@ Submitted by\par
 % ==========================================================================
 % CERTIFICATE PAGE
 % ==========================================================================
+
 \thispagestyle{{empty}}
-\begin{{singlespacing}}
-\setlength{{\parskip}}{{0pt}}
-\setlength{{\parindent}}{{0pt}}
-\begin{{center}}
-{{\large \textbf{{Karnataka ReddyJana Sangha}}\par}}
-\vspace{{2pt}}
-{{\Large \textbf{{VEMANA INSTITUTE OF TECHNOLOGY}}\par}}
-\vspace{{2pt}}
-(Affiliated to Visvesvaraya Technological University, Belagavi)\par
-Koramangala, Bengaluru--560034\par
-\vspace{{8pt}}
-\includegraphics[height=3.5cm]{{images/dept_seal.png}}\par
-\vspace{{10pt}}
-{{\large \textbf{{DEPARTMENT OF}}\par}}
-{{\large \textbf{{{dept_e.upper()}}}\par}}
-\vspace{{10pt}}
-\addcontentsline{{toc}}{{chapter}}{{Certificate}}
-{{\LARGE \textbf{{CERTIFICATE}}\par}}
-\end{{center}}
-\end{{singlespacing}}
 
-\vspace{{6pt}}
-\setlength{{\parindent}}{{1.5em}}
-This is to certify that the internship entitled \textbf{{\textquotedblleft {title_e}\textquotedblright}} is a bonafide work carried out by \textbf{{{name_upper} ({usn})}} in partial fulfilment of the requirements for the award of {deg_e} degree in \textbf{{{dept_e}}}, Visvesvaraya Technological University, Belagavi, during the academic year {year_e}.
-
-It is certified that all corrections and suggestions indicated for internal assessment have been duly incorporated in the report. The internship report has been approved as it satisfies the academic requirements prescribed for the said degree.
-
-% -- Watermark: VIT logo behind signatures ---------------------------------
+% Watermark
 \AddToShipoutPictureFG*{{%
-  \begin{{tikzpicture}}[remember picture, overlay]
-    \node[opacity=0.10] at ([yshift=-4cm]current page.center) {{%
-      \includegraphics[height=8cm]{{images/vit_logo.png}}%
-    }};
-  \end{{tikzpicture}}%
+\begin{{tikzpicture}}[remember picture,overlay]
+\node[opacity=0.05] at ([yshift=-4.8cm]current page.center)
+{{
+\includegraphics[height=7cm]{{images/vit_logo.png}}
+}};
+\end{{tikzpicture}}
 }}
 
-\vspace{{0.6cm}}
 \begin{{center}}
-\begin{{tabular}}{{>{{\raggedright\arraybackslash}}p{{0.23\textwidth}} >{{\raggedright\arraybackslash}}p{{0.24\textwidth}} >{{\raggedright\arraybackslash}}p{{0.20\textwidth}} >{{\raggedright\arraybackslash}}p{{0.23\textwidth}}}}
-\textbf{{Internal Supervisor}} & \textbf{{External Supervisor}} & \textbf{{HOD}} & \textbf{{Principal}} \\
-({intsup_e}) & ({extsup_e}) & ({hod_e}) & ({prin_e}) \\
-\end{{tabular}}
+
+\vspace*{{-1.4cm}}
+
+{{\large \textbf{{Karnataka ReddyJana Sangha}}}}
+
+{{\Large \textbf{{VEMANA INSTITUTE OF TECHNOLOGY}}}}\\[2pt]
+
+{{\small (Affiliated to Visvesvaraya Technological University, Belagavi)}}\\[-1pt]
+
+{{\small Koramangala, Bengaluru--560034}}\\[10pt]
+
+\includegraphics[height=2.8cm]{{images/dept_seal.png}}\\[8pt]
+
+{{\large \textbf{{DEPARTMENT OF}}}}\\[2pt]
+
+{{\large \textbf{{{dept_e.upper()}}}}}\\[10pt]
+
+{{\LARGE \textbf{{CERTIFICATE}}}}
+
 \end{{center}}
 
-\vspace{{0.5cm}}
-\textbf{{Name of the Examiners}} \hfill \textbf{{Signature with Date}}\par
 \vspace{{0.2cm}}
-1.\enspace\rule{{5cm}}{{0.4pt}} \hfill \rule{{3.5cm}}{{0.4pt}}\par
-\vspace{{0.4cm}}
-2.\enspace\rule{{5cm}}{{0.4pt}} \hfill \rule{{3.5cm}}{{0.4pt}}\par
 
-{cert_block}
+\noindent
+This is to certify that the internship entitled \textbf{{“{title_e}”}} is a bonafide work carried out by \textbf{{{name_upper} ({usn})}} in partial fulfillment of the requirements for the award of Bachelor of Engineering degree in \textbf{{{dept_e}}}, Visvesvaraya Technological University, Belagavi, during the academic year {year_e}.
+
+\vspace{{0.25cm}}
+
+\noindent
+It is certified that all corrections and suggestions indicated for internal assessment have been duly incorporated in the report. The internship report has been approved as it satisfies the academic requirements prescribed for the said degree.
+
+\vspace{{1.2cm}}
+
+\begin{{center}}
+
+\renewcommand{{\arraystretch}}{{1.15}}
+
+\begin{{tabular}}{{c c c c}}
+
+\textbf{{Internal Supervisor}} &
+\textbf{{External Supervisor}} &
+\textbf{{HOD}} &
+\textbf{{Principal}}
+\\[4pt]
+
+({intsup_e}) &
+({extsup_e}) &
+({hod_e}) &
+({prin_e})
+
+\end{{tabular}}
+
+\end{{center}}
+
+\vspace{{1cm}}
+
+\noindent
+\textbf{{Name of the Examiners}}
+\hfill
+\textbf{{Signature with Date}}
+
+\vspace{{0.4cm}}
+
+\noindent
+1.\hspace{{0.2cm}}\rule{{5cm}}{{0.4pt}}
+\hfill
+\rule{{4cm}}{{0.4pt}}
+
+\vspace{{0.4cm}}
+
+\noindent
+2.\hspace{{0.2cm}}\rule{{5cm}}{{0.4pt}}
+\hfill
+\rule{{4cm}}{{0.4pt}}
+
 
 % ==========================================================================
 % ACKNOWLEDGEMENT
@@ -554,7 +596,7 @@ It is certified that all corrections and suggestions indicated for internal asse
 \addcontentsline{{toc}}{{chapter}}{{Abstract}}
 
 \vspace{{0.5cm}}
-\setlength{{\parindent}}{{1.5em}}
+%\setlength{{\parindent}}{{1.5em}}
 {S("ABSTRACT", "Abstract not provided.")}
 
 % ==========================================================================
@@ -599,7 +641,7 @@ It is certified that all corrections and suggestions indicated for internal asse
 \chapter{{INTRODUCTION}}
 \label{{ch:intro}}
 
-{S("CH1_INTRO", f"This chapter provides an introduction to my internship experience at {comp_e} in the role of {title_e}. It outlines the objectives, scope, and relevance of the internship in relation to my academic background in {dept_e}. The chapter also discusses the evolution of technologies and current trends related to the work carried out during the internship period. Internships play a crucial role in bridging the gap between theoretical knowledge gained in the classroom and practical skills required in the industry. This internship provided me with a unique opportunity to apply my engineering knowledge in a real-world professional environment, working alongside experienced professionals and contributing to meaningful projects.")}
+{S("CH1_INTRO")}
 
 \section{{Internship Scope and Objectives}}
 {S("CH1_SCOPE")}
@@ -621,10 +663,10 @@ It is certified that all corrections and suggestions indicated for internal asse
 \chapter{{ORGANISATION PROFILE}}
 \label{{ch:org}}
 
-{S("CH2_INTRO", f"In addition to answering questions like when and where the internship was completed, this chapter gives a comprehensive overview of {comp_e} and concentrates on its history, founding vision, organizational structure, services offered, and overall impact in the industry. Understanding the organization where the internship was carried out is essential as it provides context for the work done and helps in appreciating the learning environment that contributed to the overall internship experience.")}
+{S("CH2_INTRO")}
 
 \section{{Introduction}}
-{S("CH2_ORG_INTRO", f"{comp_e} is a leading organization that provides structured learning, training, and internship programs to engineering students and professionals across multiple domains. The organization has established itself as a reputable entity in the technology sector, known for fostering innovation, supporting skill development, and contributing to the growth of the engineering workforce. With a commitment to practical education and industry-aligned training, the organization has been instrumental in shaping the careers of numerous students and professionals.")}
+{S("CH2_ORG_INTRO")}
 
 {comp_logo_block}
 
@@ -648,7 +690,7 @@ It is certified that all corrections and suggestions indicated for internal asse
 \chapter{{WORK DONE / METHODOLOGY}}
 \label{{ch:work}}
 
-{S("CH3_OVERVIEW", "The work completed during the internship and the methodology used are presented in this chapter. This chapter provides a detailed account of the day-to-day activities, the tools and technologies employed, the work process followed, and the key projects undertaken. It also discusses the challenges encountered during the internship and the solutions implemented to overcome them. The chapter aims to give a comprehensive understanding of the practical work experience gained during the internship period.")}
+{S("CH3_OVERVIEW")}
 
 \section{{Overview of Internship Work}}
 {S("CH3_WORK_OVERVIEW")}
@@ -678,7 +720,7 @@ It is certified that all corrections and suggestions indicated for internal asse
 \chapter{{RESULTS AND DISCUSSION}}
 \label{{ch:results}}
 
-{S("CH4_INTRO", "The work that was evaluated and examined during the internship is included in this chapter. This chapter presents a thorough analysis of the outcomes achieved, the learning acquired, and the overall effectiveness of the internship experience. It evaluates the deliverables produced, the skills developed, and provides a critical analysis of the entire internship journey, highlighting both the successes and areas for improvement.")}
+{S("CH4_INTRO")}
 
 {ci("ch4")}
 
