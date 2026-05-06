@@ -4,7 +4,7 @@ import json
 import shutil
 import subprocess
 from flask import Flask, request, render_template, send_file, jsonify
-from builder import generate_latex
+from builder_template_based import create_report
 from prompt_generator import generate_prompt
 
 app = Flask(__name__)
@@ -12,7 +12,7 @@ app.secret_key = "report_ai_vit_2025"
 
 BASE_DIR     = os.path.dirname(os.path.abspath(__file__))
 UPLOADS_DIR  = os.path.join(BASE_DIR, "uploads")
-GEN_DIR      = os.path.join(BASE_DIR, "generated")
+GEN_DIR      = os.path.join(BASE_DIR, "generated_reports")
 TRACKER      = os.path.join(BASE_DIR, "combo_tracker.json")
 TECTONIC_EXE = os.path.join(BASE_DIR, "bin", "tectonic.exe")
 ASSETS_DIR   = os.path.join(BASE_DIR, "assets")   # Bundled logos (VTU, VIT, dept seal)
@@ -118,62 +118,62 @@ def api_generate_report():
     data       = request.get_json(force=True)
     session_id = data.get("session_id") or str(uuid.uuid4())
 
-    src_dir = os.path.join(UPLOADS_DIR, session_id)
+    # Create output directory structure
     out_dir = os.path.join(GEN_DIR, session_id)
     img_dir = os.path.join(out_dir, "images")
+    os.makedirs(out_dir, exist_ok=True)
     os.makedirs(img_dir, exist_ok=True)
 
-    # Copy uploaded files → images/
+    # Copy ALL logos to BOTH root and images/ (template references both places)
+    logo_files = ["vtu_logo.png", "vit_logo.png", "dept_seal.png", "trispace.png"]
+    if os.path.exists(ASSETS_DIR):
+        for asset_fn in logo_files:
+            asset_path = os.path.join(ASSETS_DIR, asset_fn)
+            if os.path.exists(asset_path):
+                # Copy to root
+                shutil.copy2(asset_path, os.path.join(out_dir, asset_fn))
+                # Copy to images/
+                shutil.copy2(asset_path, os.path.join(img_dir, asset_fn))
+
+    # Copy uploaded files to images/
     file_map = {}
+    src_dir = os.path.join(UPLOADS_DIR, session_id)
     if os.path.exists(src_dir):
         for fn in os.listdir(src_dir):
             shutil.copy2(os.path.join(src_dir, fn), os.path.join(img_dir, fn))
             file_map[fn] = fn
 
-    # Copy bundled assets (VTU logo, VIT logo, dept seal) → images/
-    if os.path.exists(ASSETS_DIR):
-        for asset_fn in ["vtu_logo.png", "vit_logo.png", "dept_seal.png"]:
-            asset_path = os.path.join(ASSETS_DIR, asset_fn)
-            if os.path.exists(asset_path):
-                shutil.copy2(asset_path, os.path.join(img_dir, asset_fn))
+    # Create placeholder chapter images if they don't exist
+    placeholder_images = ["chapter 3 image.jpeg", "chapter 3.1 image.jpeg", "chapter 4 image.jpeg"]
+    placeholder_source = os.path.join(os.path.dirname(__file__), "Latex folder", "flow.png")
+    if os.path.exists(placeholder_source):
+        for img_name in placeholder_images:
+            img_path = os.path.join(out_dir, img_name)
+            if not os.path.exists(img_path):
+                shutil.copy2(placeholder_source, img_path)
 
-    # Validate chapter images (keep only successfully uploaded ones)
-    valid_ch_imgs = []
-    for item in data.get("chapter_images", []):
-        fn = item.get("filename", "")
-        if fn and fn in file_map:
-            valid_ch_imgs.append({
-                "chapter":  item.get("chapter", "ch1"),
-                "filename": fn,
-                "caption":  item.get("caption", "Figure"),
-            })
-    data["chapter_images"] = valid_ch_imgs
-
-    # Combo count for reframing
-    combo_count = get_combo_count(
+    increment_combo(
         data.get("company_name", ""),
         data.get("department", "")
     )
 
-    # Generate .tex
-    tex = generate_latex(data, combo_count)
-    tex_path = os.path.join(out_dir, "report.tex")
-    with open(tex_path, "w", encoding="utf-8") as f:
-        f.write(tex)
-
-    increment_combo(data.get("company_name", ""), data.get("department", ""))
+    # Generate .tex from template
+    result = create_report(data, session_id)
+    tex_path = result['tex_path']
 
     # Compile PDF with tectonic
     pdf_ok = compile_pdf(tex_path, out_dir)
 
-    result = {
+    result_response = {
         "success": True,
         "tex_url": f"/download/{session_id}/report.tex",
     }
     if pdf_ok:
-        result["pdf_url"] = f"/download/{session_id}/report.pdf"
+        result_response["pdf_url"] = f"/download/{session_id}/report.pdf"
+    else:
+        result_response["warning"] = "PDF compilation failed, but .tex was generated"
 
-    return jsonify(result)
+    return jsonify(result_response)
 
 @app.route("/download/<session_id>/<filename>")
 def download(session_id, filename):

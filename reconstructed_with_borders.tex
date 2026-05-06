@@ -1,0 +1,253 @@
+% Reconstructed LaTeX with page borders overlay
+% Generated from Internship_Report_latex.md
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+% Border packages
+\usepackage{tikz}
+\usepackage{eso-pic}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    pdftitle={Internship Report},
+    pdfauthor={Shreeneeth Reddy N}
+}
+
+\setstretch{1.3}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+
+\titleformat{\chapter}[display]
+  {\bfseries\Large}
+  {\chaptername~\thechapter}{10pt}{\Huge}
+
+% Page border: draws a rectangle inset from page edges on every page.
+\newcommand{\PageBorder}{%
+  \AddToShipoutPictureBG{%
+    \begin{tikzpicture}[remember picture,overlay]
+      \draw[line width=1.2pt, color=black]
+        ($(current page.north west) + (1cm,-1cm)$) rectangle
+        ($(current page.south east) + (-1cm,1cm)$);
+    \end{tikzpicture}%
+  }%
+}
+\AtBeginDocument{\PageBorder}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+\centering
+{\Large VISVESVARAYA TECHNOLOGICAL UNIVERSITY\par}
+\vspace{0.3cm}
+{\large Jnana Sangama, Belagavi - 590018\par}
+\vspace{1.2cm}
+{\Large An Internship Report\par}
+\vspace{0.4cm}
+{\large On\par}
+\vspace{0.4cm}
+{\Large \textquotedblleft UX Design, Game Design Internship\textquotedblright\par}
+\vspace{0.4cm}
+{\large 02.02.2026 to 31.05.2026\par}
+\vspace{1cm}
+Submitted in partial fulfillment of the requirements for the award of the degree of\par
+\vspace{0.3cm}
+{\Large Bachelor of Engineering\par}
+\vspace{0.2cm}
+in\par
+\vspace{0.2cm}
+{\Large Electronics and Communication Engineering\par}
+\vspace{1cm}
+Submitted by\par
+\vspace{0.3cm}
+{\Large SHREENEETH REDDY N\par}
+{\Large 1VI22EC150\par}
+\vfill
+{\Large DEPARTMENT OF ELECTRONICS AND COMMUNICATION ENGINEERING\par}
+{\Large VEMANA INSTITUTE OF TECHNOLOGY\par}
+{\Large BENGALURU -- 560034\par}
+\vspace{0.4cm}
+{\Large 2025 - 2026\par}
+\end{titlepage}
+
+% Certificate page
+\pagenumbering{roman}
+\setcounter{page}{1}
+\begin{center}
+{\Large Karnataka ReddyJana Sangha\par}
+{\Large VEMANA INSTITUTE OF TECHNOLOGY\par}
+(Affiliated to Visvesvaraya Technological University, Belagavi)\par
+Koramangala, Bengaluru--560034\par
+\vspace{0.5cm}
+{\Large DEPARTMENT OF ELECTRONICS AND COMMUNICATION ENGINEERING\par}
+\vspace{1cm}
+{\Large CERTIFICATE\par}
+\end{center}
+
+This is to certify that the internship entitled ``UX Design, Game Design Internship'' is a bonafide work carried out by SHREENEETH REDDY N (1VI22EC150) in partial fulfilment of the requirements for the award of Bachelor of Engineering degree in Electronics and Communication Engineering, Visvesvaraya Technological University, Belagavi, during the academic year 2025-2026.
+
+It is certified that all corrections and suggestions indicated for internal assessment have been duly incorporated in the report. The internship report has been approved as it satisfies the academic requirements prescribed for the said degree.
+
+\vspace{1cm}
+\begin{center}
+\begin{tabular}{p{0.23\textwidth} p{0.23\textwidth} p{0.23\textwidth} p{0.23\textwidth}}
+Internal Supervisor & External Supervisor & HOD & Principal \\
+(Prof. Ankitha A) & (Edutainer Team) & (Dr. Suneeta) & (Dr. Vijayasimha Reddy B G) \\
+\end{tabular}
+\end{center}
+
+\vspace{0.8cm}
+Name of the Examiners\hfill Signature with Date\par
+1.\par
+2.\par
+
+\newpage
+\begin{center}
+\includegraphics[width=0.8\textwidth]{images/certificate.png}
+\end{center}
+
+\newpage
+\chapter*{ACKNOWLEDGEMENT}
+\addcontentsline{toc}{chapter}{Acknowledgement}
+
+I sincerely thank Visvesvaraya Technological University (VTU) for providing me with the opportunity to undertake this internship as a part of the academic curriculum, which has contributed significantly to my learning and overall development.
+
+I express my sincere gratitude to Dr. Vijayasimha Reddy B G, Principal, Vemana Institute of Technology, Bengaluru, for providing the necessary infrastructure, encouragement, and support to successfully carry out the internship work.
+
+I extend my heartfelt thanks to Dr. Suneeta, Head of the Department, Electronics and Communication Engineering, Vemana Institute of Technology, for her constant guidance, motivation, and encouragement throughout the internship duration.
+
+I would also like to thank Internal Supervisor Prof. Ankitha A, External Supervisor Edutainer Team, and Internship Coordinators Dr. Girish N, Prof. Rashmi P B for their cooperation, coordination, and support during the internship period.
+
+I am thankful to all the teaching and non-teaching staff members of the Department of Electronics and Communication Engineering for their support and encouragement throughout the internship.
+
+I also acknowledge the support of the Edutainer platform for providing structured learning resources and an environment that encouraged systematic understanding, practical application, and continuous improvement.
+
+\vspace{0.5cm}
+Shreeneeth Reddy N\par
+1VI22EC150\par
+
+\newpage
+\chapter*{ABSTRACT}
+\addcontentsline{toc}{chapter}{Abstract}
+
+The Edutainer UX Designer/Game Designer internship provided a controlled learning environment that integrated computer science and interactive design concepts. The curriculum prioritized conceptual clarity, logical reasoning, and practical application over memorization. I used iterative practice to convert the assignments. It also introduced ideas related to game design and user experience, such as gamification, usability, interface design, and user flow. In order to turn unstructured data into organised information, transcription tools and AI-assisted refining techniques were essential. Tasks, resources, and notes were arranged using GitHub. In order to improve clarity and visual communication, the internship work also concentrated on documentation and presentation. Converted the instructional materials into useful PDF booklets, except for the later half of the course.
+
+\newpage
+\tableofcontents
+\addcontentsline{toc}{chapter}{Table of Contents}
+
+\newpage
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+
+\chapter{INTRODUCTION}
+
+``UX Design, Game Design Intern'' was a paid internship course provided by Edutainer for the cost of Rs 6,000. This course was offered a clear view of Game Designing and UX Designing along with the Basic of computer science needed to understand the course easier. This chapter fills in the details related to the course introduction, scope and its importance. The acronyms computer science (CS), user experience (UX), and user interface (UI) are commonly used in the PDF going forward.
+
+\section{Internship Scope and Objectives}
+The course starts from the basics of computer science to ensure that the user/intern is well-knowledgeable regarding the details and make a smoother flow in the process of understanding the whole concept.
+
+The primary goal of the course being to get the intern to understand UX Design/Game Design.
+
+The UX Design covers the understanding of user behavior, developing user-friendly interfaces (UI elements) and developing intriguing user experiences (UX elements).
+
+The game design covers the understanding of concepts like mechanics, structure, and user engagement in game involving positions relating to UX research, interface design, and interaction design.
+
+Design and prototyping are done with programs like Figma, Adobe XD, and Unity. User research, wireframing, prototyping, usability testing, and iterative design enhancements are some of the tasks.
+
+\section{Relevance of UX and Game Design}
+UX design is crucial to ensuring usability, accessibility, and user satisfaction in digital systems such as webpages, application software, etc. It directly affects the engagement and retention of system users.
+
+Game design creates immersive experiences in interactive games by combining creative logic and storytelling to amuse the player.
+
+Both domains are heavily utilised in real-world applications such as web platforms and webpages, mobile applications, gaming systems, and interactive technologies.
+
+\section{Evolution of UX and Game Design Practices}
+Basic UI design has been replaced by a user-centered, research-driven approach. While functionality was the primary focus of earlier systems, modern systems place a higher priority on usability and experience.
+
+Simple 2D games gave way to intricate 3D settings with cutting-edge physics, graphics, and, more recently, artificial intelligence-powered interactions.
+
+\section{Current Trends and Technologies}
+Thanks to advancements like AI-driven programming and UI/UX customization, AR/VR technologies, and contemporary tools like Figma, Unity, and Unreal Engine, the field is changing.
+
+The use of data-driven design techniques to enhance decision-making and user experience is growing.
+
+\chapter{ORGANISATION PROFILE}
+
+In addition to answering questions like when and where the internship was completed, this chapter gives a general overview of the company and concentrates on its history, goals, services, and overall impact rather than highlighting individual experiences.
+
+\section{Introduction}
+Edutainer is a top supplier of online courses, career advancement programs, and virtual internships for undergraduates and working professionals. To help students succeed in the workplace. They specialize in job-related training, portfolio development, and internship projects. Microsoft Office, Python, Data Structures, UI/UX Design, React, and interview techniques are some of the subjects they typically cover. They combined custom learning solutions, such as LMS creation and API-based course delivery, in partnership with leading universities and training centers. They offer professional student counseling, job placement prep, and consulting assistance for skill development programs in addition to instruction.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.55\textwidth]{images/edutainer_logo.png}
+\caption{Internship Provider - Edutainer Logo}
+\end{figure}
+
+\section{Vision and Mission of the Organization}
+Edutainer envisions creating convenient, engaging and meaningful learning experiences through the integration of traditional educational methods with innovative technology.
+
+\section{Programs and Services Offered}
+Edutainer offers a wide range of programs across multiple domains, including UX Design, Game Design, Artificial Intelligence, and other emerging technologies.
+
+\section{Organizational Impact and Reach}
+Edutainer achieved a major influence by addressing a large number of youngsters through its events and initiatives.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{images/internship_overview.png}
+\caption{Internship Overview}
+\end{figure}
+
+\begin{itemize}[leftmargin=1.5em]
+    \item 50,000+ students trained
+    \item 1000+ internships completed
+    \item High program completion rates
+    \item Multiple industry and academic partnerships
+\end{itemize}
+
+\section{Core Values}
+The organization’s approach to innovation and education is guided by a set of basic ideals.
+
+\begin{itemize}[leftmargin=1.5em]
+    \item Innovation -- Adopting new learning technologies and approaches.
+    \item Accessibility -- Expanding the reach of education.
+    \item Excellence -- Upholding high standards in content and delivery.
+    \item Collaboration -- Creating alliances and learning communities.
+\end{itemize}
+
+\chapter{WORK DONE / METHODOLOGY}
+
+The work completed during the internship and the technique used are presented in this chapter. It focuses on useful activities, equipment, and the methodical technique taken to do the assignment effectively.
+
+The internship started on 2nd February and lasted till May 31st, 2026.
+
+\section{Overview of Internship Work}
+I focused on typical UX design and game design, structured learning, and technical documentation throughout my internship.
+
+The tasks began with fundamentals of CS work, in addition to arranging and updating instructional materials. Completing necessary classes, recording solutions, and keeping up with GitHub repositories were all part of this. One of the most important aspects of the internship was actively participating in quizzes, which involved reviewing questions and maintaining well-organised records for effective revision and clarity.
+
+Another crucial component of the endeavour was content processing. This involved using AI-assisted techniques to enhance the information after using transcription technologies to convert audio and video data into text. The processed material was then carefully arranged into booklet, PDF, and note forms for better accessibility and understanding.
+
+Assignments, notes, and official documents were all properly categorised according to the meticulous organization and upkeep of all resources via GitHub repositories. You may view the entire collection of work and structured material at: \url{https://github.com/Runarok/ux-game-intern/tree/main}.
+
+\section{Tools and Technologies Used}
+A wide range of tools and technologies were used during the internship to support learning, design, and documentation processes.
+
+% (Document continues...) 
+
+\end{document}
